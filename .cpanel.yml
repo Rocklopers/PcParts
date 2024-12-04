@@ -1,0 +1,24 @@
+# Specify the environment for cPanel to use
+api_version: 1
+
+# Entry point of the application
+entrypoint: "app.js" # Replace 'app.js' with your app's main file (e.g., server.js)
+
+# Commands to run for the application lifecycle
+commands:
+  start: "npm start"
+  build: "npm install"
+  stop: "pkill -f node"
+
+# Environment variables (optional)
+environment:
+  NODE_ENV: "development"
+  PORT: 3000 # Ensure this port matches your application setup
+
+# Path to application files
+deployment:
+  tasks:
+    - export DEPLOY_DIR="/home/username/node_project"
+    - cd "${DEPLOY_DIR}"
+    - npm install
+    - npm run build # Optional if you have a build step
